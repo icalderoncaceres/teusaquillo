@@ -87,7 +87,7 @@ if(isset($_SESSION['user'])){
     <!-- bootstrap-daterangepicker -->
     <script src="../vendors/moment/min/moment.min.js"></script>
     <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 	
