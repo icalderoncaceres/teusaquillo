@@ -1,3 +1,14 @@
+<?php
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    if(!$_SESSION['user']){
+        header('Location:login.html');
+    }
+    if($_SESSION['user']=="nouser"){
+        header('Location:login.html');   
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

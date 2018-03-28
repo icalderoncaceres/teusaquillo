@@ -1,7 +1,6 @@
-<?php include('./views/header.php');?>  
-  <body class="nav-md">
-    <?php
-        include('body.html');
-        include('./views/reservaciones.php');
-        include('./views/footer.html');
-    ?>
+<?php 
+	include('./views/header.php');
+    include('./views/left.php');
+    include('./views/reservaciones.php');
+    include('./views/footer.html');
+?>
