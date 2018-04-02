@@ -1,4 +1,15 @@
-
+<?php
+    /*
+    include_once("../clases/reservaciones.php");
+    $bd=new reservaciones();
+    $reservaciones=$reservaciones->getList();
+    */
+    $reservaciones=[
+        array('id'=>1,'fecha'=>date(),'salon'=>'Principal','alternativa'=>'golden','monto'=>123,'abonado'=>120,'restante'=>3),
+        array('id'=>2,'fecha'=>date(),'salon'=>'Principal','alternativa'=>'golden','monto'=>123,'abonado'=>120,'restante'=>3),
+        array('id'=>3,'fecha'=>date(),'salon'=>'Principal','alternativa'=>'golden','monto'=>123,'abonado'=>120,'restante'=>3)
+    ];
+?>
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -26,21 +37,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Lista de reservaciones</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
+                    <a class="btn btn-success pull-right" href="#"><i class="fa fa-blank"></i>Crear reservación</a>
                     <div class="clearfix"></div>
                   </div>
 
@@ -51,11 +48,11 @@
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
+
                             <th class="column-title">Nº </th>
                             <th class="column-title">Fecha </th>
+                            <th class="column-title">Salon </th>
+                            <th class="column-title">Alternativa </th>
                             <th class="column-title">Cliente </th>
                             <th class="column-title">Monto </th>
                             <th class="column-title">Abonado </th>
@@ -69,19 +66,27 @@
                         </thead>
 
                         <tbody>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                            <td class="a-right a-right ">$7.45</td>
-                            <td class=" last"><a href="#">View</a>
-                            </td>
-                          </tr>
+                          <?php
+                              foreach($reservaciones as $reservacion):
+                          ?>
+                              <tr class="even pointer">
+                                <td class=" "><?= $reservacion["id"] ?></td>
+                                <td class=" "><?= $reservacion["fecha"] ?></td>
+                                <td class=" "><?= $reservacion["salon"] ?> </td>
+                                <td class=" "><?= $reservacion["alternativa"] ?> </td>
+                                <td class=" "><?= $reservacion["cliente"] ?> </td>
+                                <td class=" "><?= $reservacion["monto"] ?></td>
+                                <td class="a-right a-right "><?= $reservacion["abonado"] ?></td>
+                                <td class="a-right a-right "><?= $reservacion["restante"] ?></td>
+                                <td class=" last">
+                                    <a href="#" class="btn btn-warning">Ver</a>&nbsp;
+                                    <a href="#" class="btn btn-danger"><i class="fa fa-trush"></i>Cancelar</a>&nbsp;
+
+                                </td>
+                              </tr>
+                          <?php
+                              endforeach;
+                          ?>
                         </tbody>
                       </table>
                     </div>
