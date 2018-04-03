@@ -1,14 +1,15 @@
-<?php
-    /*
-    include_once("../clases/reservaciones.php");
-    $bd=new reservaciones();
-    $reservaciones=$reservaciones->getList();
-    */
+<?php    
+    include_once("clases/reservaciones.php");
+    $reservaciones=new reservaciones();
+    $list=$reservaciones->getList();
+    
+	/*
     $reservaciones=[
-        array('id'=>1,'fecha'=>date(),'salon'=>'Principal','alternativa'=>'golden','monto'=>123,'abonado'=>120,'restante'=>3),
-        array('id'=>2,'fecha'=>date(),'salon'=>'Principal','alternativa'=>'golden','monto'=>123,'abonado'=>120,'restante'=>3),
-        array('id'=>3,'fecha'=>date(),'salon'=>'Principal','alternativa'=>'golden','monto'=>123,'abonado'=>120,'restante'=>3)
+        array('id'=>1,'fecha'=>date('y'),'salon'=>'Principal','alternativa'=>'golden','cliente'=>'Pedro','monto'=>123,'abonado'=>120,'restante'=>3),
+        array('id'=>2,'fecha'=>date('y'),'salon'=>'Principal','alternativa'=>'golden','cliente'=>'Pedro','monto'=>123,'abonado'=>120,'restante'=>3),
+        array('id'=>3,'fecha'=>date('Y'),'salon'=>'Principal','alternativa'=>'golden','cliente'=>'Pedro','monto'=>123,'abonado'=>120,'restante'=>3)
     ];
+	*/
 ?>
         <!-- page content -->
         <div class="right_col" role="main">
@@ -67,7 +68,7 @@
 
                         <tbody>
                           <?php
-                              foreach($reservaciones as $reservacion):
+                              foreach($list as $reservacion):
                           ?>
                               <tr class="even pointer">
                                 <td class=" "><?= $reservacion["id"] ?></td>

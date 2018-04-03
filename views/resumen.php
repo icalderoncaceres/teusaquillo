@@ -1,5 +1,5 @@
 <?php
-	include_once('../clases/bd.php');
+	include_once('clases/bd.php');
 	$bd=new bd();
 	$reservaciones=$bd->doFullSelect('reservaciones');
 ?>
