@@ -69,11 +69,8 @@ class reservaciones{
 	
 	public function getList(){
 		$bd=new bd();
-		$strSql="select r.*,c.nombre,s.nombre,p.nombre from reservaciones r,";
-		return [
-			array('id'=>1,'fecha'=>date('y'),'salon'=>'Principal','alternativa'=>'golden','cliente'=>'Pedro','monto'=>123,'abonado'=>120,'restante'=>3),
-			array('id'=>2,'fecha'=>date('y'),'salon'=>'Principal','alternativa'=>'golden','cliente'=>'Pedro','monto'=>123,'abonado'=>120,'restante'=>3),
-			array('id'=>3,'fecha'=>date('Y'),'salon'=>'Principal','alternativa'=>'golden','cliente'=>'Pedro','monto'=>123,'abonado'=>120,'restante'=>3)
-		];
+		$strSql="select r.*,c.nombre,r.salon,r.plan,10 as abonado from reservaciones r INNER JOIN clientes c WHERE r.cliente_id=c.id";
+		$reservaciones=$bd->query($strSql);
+		return $reservaciones->fetchAll();
 	}
 }
