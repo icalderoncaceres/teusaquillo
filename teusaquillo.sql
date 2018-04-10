@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2018 a las 06:01:33
+-- Tiempo de generación: 10-04-2018 a las 05:27:30
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.5.33
 
@@ -46,6 +46,42 @@ INSERT INTO `clientes` (`id`, `identificacion`, `nombre`, `direccion`, `telefono
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `items`
+--
+
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `more` decimal(12,0) NOT NULL,
+  `less` decimal(12,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `items`
+--
+
+INSERT INTO `items` (`id`, `description`, `more`, `less`) VALUES
+(1, 'Item 1', '2000', '1000'),
+(2, 'Item 2', '3000', '2000');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `planes_detalle`
+--
+
+CREATE TABLE `planes_detalle` (
+  `valor_retirar` decimal(12,0) NOT NULL,
+  `items_id` int(11) NOT NULL,
+  `platinium` int(11) NOT NULL,
+  `gold` int(11) NOT NULL,
+  `premium` int(11) NOT NULL,
+  `valor_adicional` decimal(12,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `reservaciones`
 --
 
@@ -67,6 +103,17 @@ CREATE TABLE `reservaciones` (
 INSERT INTO `reservaciones` (`id`, `fecha_reserv`, `fecha_event`, `salon`, `plan`, `monto`, `cliente_id`, `observaciones`) VALUES
 (1, '2018-04-04 00:00:00', '2018-04-13 00:00:00', 'Principal', 'Golden', 123088, 1, 'Ninguna');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reservaciones_detalle`
+--
+
+CREATE TABLE `reservaciones_detalle` (
+  `reservaciones_id` int(11) NOT NULL,
+  `items_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Índices para tablas volcadas
 --
@@ -75,6 +122,12 @@ INSERT INTO `reservaciones` (`id`, `fecha_reserv`, `fecha_event`, `salon`, `plan
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `items`
+--
+ALTER TABLE `items`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -92,6 +145,11 @@ ALTER TABLE `reservaciones`
 --
 ALTER TABLE `clientes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `items`
+--
+ALTER TABLE `items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `reservaciones`
 --
