@@ -1,0 +1,29 @@
+				<div class="col-md-12">
+					<div class="row x_panel">
+						<h3>Items de producción</h3>
+						<hr>
+						
+						<div class="form-group col-md-10">
+							<select class="form-control">
+								<option value="-1">Seleccione</option>
+								<?php foreach($items as $item):?>
+									<option value="<?= $item['id'] ?>"><?= $item['description'] ?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<a href="#" class="btn btn-primary">Agregar</a>
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped">
+					<caption>DETALLE DEL PRESUPUESTO</caption>
+					<thead>
+						<th>Nº</th>
+						<th>Item</th>
+						<th>Valor</th>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
