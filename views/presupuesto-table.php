@@ -97,7 +97,7 @@
 				Monto:
 			</div>
 			<div class="col-md-6 red text-right">
-				$ <?= number_format($plan['monto'],2,',','.') ?>
+				$<span id="span-monto"> <?= number_format($plan['monto'],2,',','.') ?></span>
 			</div>
 		</div>
 		<hr />
@@ -106,7 +106,7 @@
 				Adiciones:
 			</div>
 			<div class="col-md-6 red text-right">
-				$ 0,00
+				$<span id="span-adiciones"> 0,00</span>
 			</div>
 		</div>
 		<hr />
@@ -115,7 +115,7 @@
 				Retiros:
 			</div>
 			<div class="col-md-6 red text-right">
-				$ 0,00
+				$<span id="span-retiros"> 0,00</span>
 			</div>
 		</div>
 		<hr />
@@ -124,7 +124,7 @@
 				TOTAL:
 			</div>
 			<div class="col-md-6 red text-right">
-				$ <?= number_format($plan['monto'],2,',','.') ?>
+				$ <span id="span-total"><?= number_format($plan['monto'],2,',','.') ?></span>
 			</div>
 		</div>
 	</div>
