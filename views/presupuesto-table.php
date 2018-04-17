@@ -27,7 +27,7 @@
 			</select>
 		</div>
 		<div class="col-md-2">
-			<a href="#" class="btn btn-primary">Agregar</a>
+			<a href="#" class="btn btn-primary" id="btn-agregar">Agregar</a>
 		</div>
 	</div>
 </div>
@@ -41,7 +41,7 @@
 				<th>Item</th>
 				<th>Valor retirar<th>
 			</thead>
-			<tbody>			
+			<tbody id="items-plan">
 				<?php $contador=0;?>
 				<?php foreach($detalles as $detalle):
 					//Verificamos si el item debe ser agregado a la tabla
@@ -65,7 +65,7 @@
 						<tr>
 							<th>
 								<?php if($detalle['valor_retirar']!=0):?>
-									<input type="checkbox" checked class="input-actualizar" data-more=<?= $detalle['valor_adicional'] ?> data-less=<?= $detalle['valor_retirar'] ?>></input>
+									<input type="checkbox" checked class="input-actualizar" data-more=<?= $detalle['valor_adicional'] ?> data-less=<?= $detalle['valor_retirar'] ?> data-id=<?= $detalle['id'] ?> ></input>
 								<?php else:?>
 									<span class="badge">R</span>
 								<?php endif;?>
@@ -73,19 +73,27 @@
 							<td><?= $contador;?></td>
 							<td><?= utf8_encode($detalle['elemento'])?></td>
 							<td class="text-right">
-								<?=
-									$detalle['valor_retirar']!=-1?number_format($detalle['valor_retirar'],2,',','.'):'Consultar' 
+								<?php
+									if($detalle['valor_retirar']!=-1){
+										echo number_format($detalle['valor_retirar'],2,',','.');
+									}else{
+										echo "<a href='#' class='consultar' data-id=" . $detalle["id"] . ">Consultar</a>";
+									}
 								?>
 							</td>
 						</tr>
 					<?php
 					else:?>
-						<span class="items-not hidden" >
-							<?= utf8_encode($detalle['elemento']) ?>							
+						<span class="items-not hidden" data-more='<?= $detalle['valor_adicional'] ?>'>
+							<?= utf8_encode($detalle['elemento']) ?>	
 						</span>
 					<?php
 					endif;
 				endforeach;?>
+			</tbody>
+
+			<tbody id="items-adicionales">
+
 			</tbody>
 		</table>
 	</div>
@@ -128,7 +136,10 @@
 			</div>
 		</div>
 	</div>
-	<script>		
-		addSelect();		
+	<script>
+		setTimeout(()=>{
+			addSelect();
+		iniciar(<?= $plan['monto'] ?>);
+		},1500);
 	</script>
 </div>

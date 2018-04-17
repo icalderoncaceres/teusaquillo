@@ -1,3 +1,4 @@
+var monto=0,adiciones=0,sustracciones=0,total=0;
 $(document).ready(function(){
 	$("#btn-generar").click(function(e){
 		e.preventDefault();
@@ -40,52 +41,102 @@ $(document).ready(function(){
 	});
 	
 	$(document).on("click",".input-actualizar",function(e){
-		let monto=$("#span-monto").text();
-		monto=monto.replace("/./gi","");
-		monto=parseFloat(monto);
-		let retiros=$("#span-retiros").text();
-		retiros=retiros.replace("/./gi","");
-		retiros=parseFloat(retiros);
-		let adiciones=$("#span-adiciones").text();
-		adiciones=adiciones.replace("/./gi","");
-		adiciones=parseFloat(adiciones);
-		if($(this).is(':checked')){	//Para agregar
-		}else{ //Para desmarcar			
-			let valor=parseFloat($(this).data("less"));
-			if(valor!=-1){
-				$("#span-retiros").text(valor + retiros);
-				retiros=parseFloat($("#span-retiros").text());
+		if($(this).attr("data-less")==-1){
+			let valor=prompt("Ingrese el monto del descuento de este item");
+			let id=$(this).data("id");
+			if(valor){
+				$(this).attr("data-less",parseFloat(valor));
+				$(".consultar[data-id=" + id + "]").text(numberFormat(parseFloat(valor)));
 			}else{
-				descuento=prompt("Ingrese el monto a descontar");
-				if(descuento){
-					valor=parseFloat(descuento);
-					$("#span-retiros").text(valor + retiros);
-				}
+				return;
 			}
 		}
-		total=monto - retiros + adiciones;
-		$("#span-total").text(numberFormat(total));
+		calcular();
+	});
+	
+	$(document).on("click",".consultar",function(e){
+		e.preventDefault();
+		let valor=prompt("Ingrese el valor de descuento de este item");
+		if(valor){
+			let id=$(this).data("id");
+			$(this).text(numberFormat(parseFloat(valor)));
+			$(".input-actualizar[data-id=" + id + "]").attr("data-less",parseFloat(valor));
+		}
+	});
+	
+	$(document).on("click","#btn-agregar",function(e){
+		e.preventDefault();
+		if($("#select-items").val()<=0){
+			alert("Debes seleccionar el item que deseas agregar");
+			return;
+		}
+		let elem=$("#select-items option:selected");
+		let numero=$("tbody#items-adicionales>tr").length + 1;
+		let valor=elem.attr("data-more");
+		let nuevaFila='<tr data-more=' + valor + '>';
+		nuevaFila+='<td><a class="btn btn-sm btn-danger remove-item">X</a></td>';		
+		nuevaFila+='<th>' + numero + '</th>';
+		nuevaFila+='<td>' + $("#select-items").val() + '</td>';
+		nuevaFila+='<td class="text-right">' + numberFormat(valor) + '</td></tr>';
+				
+		$("tbody#items-adicionales").append(nuevaFila);		
+		calcular();
+		elem.remove();
+	});
+	
+	$(document).on("click",".remove-item",function(e){
+		e.preventDefault();
+		let elem=$(this).parent().parent();
+		let more=elem.attr("data-more");
+		let item=elem.find("td:nth(1)").text();
+		elem.remove();
+		$("#select-items").append('<option data-more=' + more + '>' + item + '</option>');
+		calcular();		
 	});
 });
 
 function addSelect(){
 	$("span.items-not").each(function(e,index){
 		let item=$(this).text();
-		$("#select-items").append(`<option>${item}</option>`);
+		let more=$(this).data("more");
+		$("#select-items").append('<option data-more=' + more + '>' + item + '</option>');
 	});
 	$("span.items-not").remove();
 }
 
-function numberFormat(num){
-var cadena = ""; var aux;
-var cont = 1,m,k;
-if(num<0) aux=1; else aux=0;
-num=num.toString();
-for(m=num.length-1; m>=0; m--){
- cadena = num.charAt(m) + cadena;
- if(cont%3 == 0 && m >aux)  cadena = "." + cadena; else cadena = cadena;
- if(cont== 3) cont = 1; else cont++;
+function iniciar(monto1){
+	monto=monto1;
+	total=monto1;
 }
-cadena = cadena.replace(/.,/,",");
-return cadena;
+
+function calcular(){	
+	sustracciones=0;adiciones=0;
+	$("tbody#items-plan>tr input[type='checkbox']").each(function(e,i){
+		if(!$(this).is(":checked")){
+			sustracciones+=parseFloat($(this).data("less"));
+		}
+	});
+	
+	$("tbody#items-adicionales>tr").each(function(e,i){
+		adiciones+=parseFloat($(this).data("more"));
+	});
+
+	total=monto-sustracciones+adiciones;
+	$("#span-retiros").text(numberFormat(sustracciones));
+	$("#span-adiciones").text(numberFormat(adiciones));
+	$("#span-total").text(numberFormat(total));	
+}
+
+function numberFormat(num){
+	var cadena = ""; var aux;
+	var cont = 1,m,k;
+	if(num<0) aux=1; else aux=0;
+	num=num.toString();
+	for(m=num.length-1; m>=0; m--){
+	 cadena = num.charAt(m) + cadena;
+	 if(cont%3 == 0 && m >aux)  cadena = "." + cadena; else cadena = cadena;
+	 if(cont== 3) cont = 1; else cont++;
+	}
+	cadena = cadena.replace(/.,/,",");
+	return cadena;
 }
