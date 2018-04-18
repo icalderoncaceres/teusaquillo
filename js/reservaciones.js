@@ -59,12 +59,12 @@ $(document).ready(function(){
 						//Ciclo para cargar los valores de la tabla
 						let filas=$("#lista-items tbody>tr");
 						
-						filas.each(function(e,index){							
-							let f1=$(this).find('th:nth(0)').text();
-							let f2=$(this).find('td:nth(0)').text();
-							let f3=$(this).find('td:nth(1)').text();
-							let f4=$(this).find('td:nth(2)').text();
-							let f5=$(this).find('td:nth(3)').text();
+						filas.each(function(index,value){							
+							let f1=value.find('th:nth(0)').html();
+							let f2=value.find('td:nth(0)').html();
+							let f3=value.find('td:nth(1)').html();
+							let f4=value.find('td:nth(2)').html();
+							let f5=value.find('td:nth(3)').html();
 							$.ajax({
 								url:'fcn/reservaciones.php',
 								data:{id:id,f1:f1,f2:f2,f3:f3,f4:f4,f5:f5,metodo:'saveDetail'},
