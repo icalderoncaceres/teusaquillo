@@ -33,11 +33,12 @@
 </div>
 <div class="row">
 	<div class="col-md-9">
-		<table class="table table-striped">
+		<table class="table table-striped" id="lista-items">
 			<caption><h3>DETALLE DEL PRESUPUESTO</h3></caption>
 			<thead>
 				<th><input type="checkbox" checked disabled></input></th>
 				<th>Nº</th>
+				<th class="hidden"></th>
 				<th>Item</th>
 				<th>Valor retirar<th>
 			</thead>
@@ -71,6 +72,7 @@
 								<?php endif;?>
 							</th>
 							<td><?= $contador;?></td>
+							<td class="hidden"><?= $detalle['id'] ?></td>
 							<td><?= utf8_encode($detalle['elemento'])?></td>
 							<td class="text-right">
 								<?php
@@ -84,7 +86,7 @@
 						</tr>
 					<?php
 					else:?>
-						<span class="items-not hidden" data-more='<?= $detalle['valor_adicional'] ?>'>
+						<span class="items-not hidden" data-more='<?= $detalle['valor_adicional'] ?>' data-id='<?= $detalle['id'] ?>'>
 							<?= utf8_encode($detalle['elemento']) ?>	
 						</span>
 					<?php

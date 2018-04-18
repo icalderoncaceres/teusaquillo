@@ -33,6 +33,8 @@ $(document).ready(function(){
 			datatType:'HTML',
 			success:function(data){
 				$("div#container-presupuesto").html(data);	
+				$("#btn-generar").addClass("disabled");
+				$("#btn-guardar").removeClass("disabled");
 			},
 			error:function(xhr){
 				alert(xhr);
@@ -40,6 +42,63 @@ $(document).ready(function(){
 		});
 	});
 	
+	$("#btn-guardar").click(function(e){
+		e.preventDefault();
+		r=confirm("¿Esta seguro de guardar los cambios a la reservación?");
+		if(r){
+			$(this).addClass("disabled");
+			let formulario=$("#form-nueva-reservacion").serialize() + "&metodo=save&monto=" + monto + "&adiciones=" + adiciones + "&sustracciones=" + sustracciones + "&total=" + total;
+			$.ajax({
+				url:'fcn/reservaciones.php',
+				data:formulario,
+				type:'POST',
+				dataType:'json',
+				success:function(data){
+					if(data.code==200){
+						var id=data.id;
+						//Ciclo para cargar los valores de la tabla
+						let filas=$("#lista-items tbody>tr");
+						
+						filas.each(function(e,index){							
+							let f1=$(this).find('th:nth(0)').text();
+							let f2=$(this).find('td:nth(0)').text();
+							let f3=$(this).find('td:nth(1)').text();
+							let f4=$(this).find('td:nth(2)').text();
+							let f5=$(this).find('td:nth(3)').text();
+							$.ajax({
+								url:'fcn/reservaciones.php',
+								data:{id:id,f1:f1,f2:f2,f3:f3,f4:f4,f5:f5,metodo:'saveDetail'},
+								type:'POST',
+								dataType:'json',
+								success:function(data){
+									if(index==(filas.length-1)){
+										location.href="http://localhost/teusaquillo-front/editReservacion.php?id=" + id;
+									}
+								},
+								error:function(xhr){
+									console.log(xhr);
+								}
+							});
+						});						
+					}
+				},
+				error:function(xhr){
+					console.log(xhr);
+				}
+			});
+		}
+	});
+	
+	$("#btn-limpiar").click(function(e){
+		e.preventDefault();
+		r=confirm("¿Esta seguro que desea limpiar, no podra recuperar los cambios que no se han guardardo");
+		if(r){
+			$("#btn-generar").removeClass("disabled");
+			$("#btn-guardar").addClass("disabled");
+			$("div#container-presupuesto").html('');
+			$("select.requerido").val("");
+		}
+	});
 	$(document).on("click",".input-actualizar",function(e){
 		if($(this).attr("data-less")==-1){
 			let valor=prompt("Ingrese el monto del descuento de este item");
@@ -74,9 +133,10 @@ $(document).ready(function(){
 		let numero=$("tbody#items-adicionales>tr").length + 1;
 		let valor=elem.attr("data-more");
 		let nuevaFila='<tr data-more=' + valor + '>';
-		nuevaFila+='<td><a class="btn btn-sm btn-danger remove-item">X</a></td>';		
+		nuevaFila+='<td><a class="btn btn-sm btn-danger remove-item">X</a></td>';
 		nuevaFila+='<th>' + numero + '</th>';
-		nuevaFila+='<td>' + $("#select-items").val() + '</td>';
+		nuevaFila+='<td class="hidden">' + $("#select-items").val() + '</td>';
+		nuevaFila+='<td>' + $("#select-items option:selected").text() + '</td>';
 		nuevaFila+='<td class="text-right">' + numberFormat(valor) + '</td></tr>';
 				
 		$("tbody#items-adicionales").append(nuevaFila);		
@@ -88,9 +148,10 @@ $(document).ready(function(){
 		e.preventDefault();
 		let elem=$(this).parent().parent();
 		let more=elem.attr("data-more");
-		let item=elem.find("td:nth(1)").text();
+		let valor=elem.find("td:nth(1)").text();
+		let item=elem.find("td:nth(2)").text();
 		elem.remove();
-		$("#select-items").append('<option data-more=' + more + '>' + item + '</option>');
+		$("#select-items").append('<option data-more=' + more + ' value=' + valor + '>' + item + '</option>');
 		calcular();		
 	});
 });
@@ -99,7 +160,7 @@ function addSelect(){
 	$("span.items-not").each(function(e,index){
 		let item=$(this).text();
 		let more=$(this).data("more");
-		$("#select-items").append('<option data-more=' + more + '>' + item + '</option>');
+		$("#select-items").append('<option data-more=' + more + ' value=' + $(this).attr('data-id') + '>' + item + '</option>');
 	});
 	$("span.items-not").remove();
 }
