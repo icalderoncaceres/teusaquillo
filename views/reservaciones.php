@@ -72,13 +72,13 @@
                           ?>
                               <tr class="even pointer">
                                 <td class=" "><?= $reservacion["id"] ?></td>
-                                <td class=" "><?= $reservacion["fecha_event"] ?></td>
+                                <td class=" "><?= $reservacion["fecha_evento"] ?></td>
                                 <td class=" "><?= $reservacion["salon"] ?> </td>
-                                <td class=" "><?= $reservacion["plan"] ?> </td>
+                                <td class=" "><?= $reservacion["alternativa"] ?> </td>
                                 <td class=" "><?= $reservacion["nombre"] ?> </td>
                                 <td class=" "><?= number_format($reservacion["monto"],2,',','.') ?></td>
-                                <td class="a-right a-right "><?= number_format($reservacion["abonado"],2,',','.') ?></td>
-                                <td class="a-right a-right "><?= number_format($reservacion["monto"] - $reservacion["abonado"],2,',','.') ?></td>
+                                <td class="a-right a-right "><?= number_format($reservacion["monto"],2,',','.') ?></td>
+                                <td class="a-right a-right "><?= number_format($reservacion["monto"] - $reservacion["monto"],2,',','.') ?></td>
                                 <td class=" last">
                                     <a href="#" class="btn btn-warning">Ver</a>&nbsp;
                                     <a href="#" class="btn btn-danger"><i class="fa fa-trush"></i>X</a>&nbsp;

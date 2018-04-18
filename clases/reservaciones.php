@@ -69,7 +69,7 @@ class reservaciones{
 	
 	public function getList(){
 		$bd=new bd();
-		$strSql="select r.*,c.nombre,r.salon,r.plan,10 as abonado from reservaciones r INNER JOIN clientes c WHERE r.cliente_id=c.id";
+		$strSql="select * from reservaciones order by id DESC";
 		$reservaciones=$bd->query($strSql);
 		return $reservaciones->fetchAll();
 	}
