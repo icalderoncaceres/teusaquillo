@@ -28,6 +28,7 @@
                 <ul class="nav side-menu">
                   <li><a href="index.php"><i class="fa fa-home"></i> Resumen </a></li>
                   <li><a href="reservaciones.php"><i class="fa fa-edit"></i> Reservaciones </a></li>
+				  <li><a href="planes.php"><i class="fa fa-edit"></i> Planes </a></li>
                   <li><a href="reportes.php"><i class="fa fa-edit"></i> Reportes </a></li>
                 </ul>
               </div>

@@ -60,25 +60,28 @@ $(document).ready(function(){
 						let filas=$("#lista-items tbody>tr");
 						
 						filas.each(function(index,value){							
-							let f1=value.find('th:nth(0)').html();
-							let f2=value.find('td:nth(0)').html();
-							let f3=value.find('td:nth(1)').html();
-							let f4=value.find('td:nth(2)').html();
-							let f5=value.find('td:nth(3)').html();
-							$.ajax({
-								url:'fcn/reservaciones.php',
-								data:{id:id,f1:f1,f2:f2,f3:f3,f4:f4,f5:f5,metodo:'saveDetail'},
-								type:'POST',
-								dataType:'json',
-								success:function(data){
-									if(index==(filas.length-1)){
-										location.href="http://localhost/teusaquillo-front/editReservacion.php?id=" + id;
+							if(index>0){
+								let f1=$(this).find('th:nth(0)').html();
+								let f2=$(this).find('td:nth(0)').html();
+								let f3=$(this).find('td:nth(1)').html();
+								let f4=$(this).find('td:nth(2)').html();
+								let f5=$(this).find('td:nth(3)').html();
+								$.ajax({
+									url:'fcn/reservaciones.php',
+									data:{id:id,f1:f1,f2:f2,f3:f3,f4:f4,f5:f5,metodo:'saveDetail'},
+									type:'POST',
+									dataType:'json',
+									success:function(data){
+										console.log(data);
+										if(index==(filas.length-1)){
+											location.href="http://localhost/teusaquillo-front/editarReservacion.php?id=" + id;
+										}
+									},
+									error:function(xhr){
+										console.log(xhr);
 									}
-								},
-								error:function(xhr){
-									console.log(xhr);
-								}
-							});
+								});								
+							}
 						});						
 					}
 				},
@@ -154,6 +157,30 @@ $(document).ready(function(){
 		$("#select-items").append('<option data-more=' + more + ' value=' + valor + '>' + item + '</option>');
 		calcular();		
 	});
+	
+	$(document).on("click",".actualizar-plan",function(e){
+		e.preventDefault();
+		let valor=prompt("Ingrese el nuevo valor de este plan");		
+		if(valor){
+			let clave=$(this).data("clave");
+			$.ajax({
+				url:"fcn/reservaciones.php",
+				data:{metodo:'updatePlan',clave:clave,monto:parseFloat(valor)},
+				type:"POST",
+				dataType:"json",
+				success:function(data){
+					if(data.code==200){
+						document.location.reload();	
+					}else{
+						alert("No pudó actualizar");
+					}				
+				},
+				error:function(xhr){
+					console.log(xhr);
+				}
+			});
+		}
+	});
 });
 
 function addSelect(){
@@ -165,9 +192,11 @@ function addSelect(){
 	$("span.items-not").remove();
 }
 
-function iniciar(monto1){
+function iniciar(monto1,adiciones1=0,sustracciones1=0){
 	monto=monto1;
 	total=monto1;
+	adiciones=adiciones1;
+	sustracciones=sustracciones1;
 }
 
 function calcular(){	

@@ -2,7 +2,14 @@
     include_once("clases/reservaciones.php");
     $reservaciones=new reservaciones();
     $list=$reservaciones->getList();
-    
+	$tipos=['15 años','Bodas'];
+	$invitados=[];
+	for($i=40;$i<210;$i+=10){
+		$invitados[]=$i . " Invitados";
+	}
+	$salones=['Victoria','Colonial','Imperial','Britania'];
+	$alternativas=['Premium','Gold','Platinium'];
+		
 	/*
     $reservaciones=[
         array('id'=>1,'fecha'=>date('y'),'salon'=>'Principal','alternativa'=>'golden','cliente'=>'Pedro','monto'=>123,'abonado'=>120,'restante'=>3),
@@ -73,14 +80,14 @@
                               <tr class="even pointer">
                                 <td class=" "><?= $reservacion["id"] ?></td>
                                 <td class=" "><?= $reservacion["fecha_evento"] ?></td>
-                                <td class=" "><?= $reservacion["salon"] ?> </td>
-                                <td class=" "><?= $reservacion["alternativa"] ?> </td>
+                                <td class=" "><?= $salones[$reservacion["salon"]] ?> </td>
+                                <td class=" "><?= $alternativas[$reservacion["alternativa"]] ?> </td>
                                 <td class=" "><?= $reservacion["nombre"] ?> </td>
                                 <td class=" "><?= number_format($reservacion["monto"],2,',','.') ?></td>
+                                <td class="a-right a-right "><?= number_format(0,2,',','.') ?></td>
                                 <td class="a-right a-right "><?= number_format($reservacion["monto"],2,',','.') ?></td>
-                                <td class="a-right a-right "><?= number_format($reservacion["monto"] - $reservacion["monto"],2,',','.') ?></td>
                                 <td class=" last">
-                                    <a href="#" class="btn btn-warning">Ver</a>&nbsp;
+                                    <a href="editarReservacion.php?id=<?= $reservacion['id'] ?>" class="btn btn-warning">Ver</a>&nbsp;
                                     <a href="#" class="btn btn-danger"><i class="fa fa-trush"></i>X</a>&nbsp;
 
                                 </td>

@@ -59,7 +59,7 @@ function saveDetail(){
 	$f4=filter_input(INPUT_POST,"f4");
 	$f5=filter_input(INPUT_POST,"f5");
 	$valores=array(
-			"id"	=>	$id,
+			"reservaciones_id"	=>	$id,
 			"f1"	=>	$f1,
 			"f2"	=>	$f2,
 			"f3"	=>	$f3,
@@ -68,9 +68,23 @@ function saveDetail(){
 	);
 	$result=$bd->doInsert("reservaciones_detalle",$valores);
 	if($result){
-		echo json_encode(array('code'=>200));	
+		echo json_encode(array('code'=>200,"result"=>$result));	
 	}else{
 		echo json_encode(array('code'=>300));
 	}
 	
+}
+
+function updatePlan(){
+	$monto=filter_input(INPUT_POST,"monto");
+	$clave=filter_input(INPUT_POST,"clave");
+	if($monto && $clave){
+		$bd=new bd();
+		$result=$bd->doUpdate("planes",array("monto"=>$monto),"clave=" . $clave);
+		if($result){
+			echo json_encode(array("code"=>200));
+		}else{
+			echo json_encode(array("code"=>300));
+		}
+	}
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2018 a las 06:48:54
+-- Tiempo de generación: 19-04-2018 a las 06:45:23
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.5.33
 
@@ -728,7 +728,7 @@ CREATE TABLE `reservaciones` (
 --
 
 INSERT INTO `reservaciones` (`id`, `fecha_reserv`, `fecha_evento`, `hora_evento`, `tipo_evento`, `invitados`, `salon`, `alternativa`, `monto`, `adiciones`, `sustracciones`, `total`, `identificacion`, `nombre`, `email`, `telefono`, `direccion`, `observaciones`) VALUES
-(6, '2018-04-18 06:44:02', '2018-04-11', 3, 0, 4, 1, 1, 12636000, 0, 0, 12636000, 1232396262, 'Ivan', 'ivan@mail.com', '6526525625', 'jksjsjsjksjk', 'jsjsjsjksjk');
+(14, '2018-04-19 06:00:38', '2018-04-19', 3, 0, 8, 1, 1, 13922000, 0, 0, 13922000, 123456, 'Ivan', 'ivan@mail.com', '7737872782', 'jsjsjksjkskj', 'jksjksjsjk');
 
 -- --------------------------------------------------------
 
@@ -737,13 +737,56 @@ INSERT INTO `reservaciones` (`id`, `fecha_reserv`, `fecha_evento`, `hora_evento`
 --
 
 CREATE TABLE `reservaciones_detalle` (
+  `id` int(11) NOT NULL,
   `reservaciones_id` int(11) NOT NULL,
-  `f1` varchar(100) NOT NULL,
-  `f2` varchar(100) NOT NULL,
-  `f3` varchar(100) NOT NULL,
-  `f4` varchar(100) NOT NULL,
-  `f5` varchar(100) NOT NULL
+  `f1` varchar(245) NOT NULL,
+  `f2` varchar(245) NOT NULL,
+  `f3` varchar(245) NOT NULL,
+  `f4` varchar(245) NOT NULL,
+  `f5` varchar(245) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `reservaciones_detalle`
+--
+
+INSERT INTO `reservaciones_detalle` (`id`, `reservaciones_id`, `f1`, `f2`, `f3`, `f4`, `f5`) VALUES
+(130, 14, '\n																	<span class="badge">R</span>\n															', '2', '2', 'IluminaciÃ³n perimetal de los muros del salÃ³n con LED TECHNOLOGY', '\n								0,00							'),
+(131, 14, '\n																	<span class="badge">R</span>\n															', '3', '4', 'Sillas Tipo Hotel', '\n								0,00							'),
+(132, 14, '\n																	<span class="badge">R</span>\n															', '6', '7', 'Sedas y Velos', '\n								0,00							'),
+(133, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="100000" data-less="50000" data-id="15">\n															', '9', '15', 'Guirnalda en BalcÃ³n', '\n								50.000,00							'),
+(134, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="0" data-less="5000" data-id="21">\n															', '10', '21', 'Mesa de: PonquÃ© o Cup Cakes Ã³ Sweet Table y Mesa de Urna -(Una)', '\n								5.000,00							'),
+(135, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="0" data-less="5000" data-id="22">\n															', '11', '22', 'Copas de Champagne para quienes ofrecen el Brindis', '\n								5.000,00							'),
+(136, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="60000" data-less="30000" data-id="23">\n															', '12', '23', 'Pedestales en Forja Inglesa', '\n								30.000,00							'),
+(137, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="-1" data-less="10000" data-id="6">\n															', '5', '6', 'Brocados, Jackards, Mouselinas y Tables Roads', '\n								10.000,00							'),
+(138, 14, '\n																	<span class="badge">R</span>\n															', '7', '8', 'Cristaleria, Cubierteria, Servilletas y Vajillas', '\n								0,00							'),
+(139, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="-1" data-less="15000" data-id="9">\n															', '8', '9', 'Centros de Mesa', '\n								15.000,00							'),
+(140, 14, '\n																	<span class="badge">R</span>\n															', '4', '5', 'Colores BÃ¡sicos de LencerÃ­a', '\n								0,00							'),
+(141, 14, '\n																	<span class="badge">R</span>\n															', '13', '24', 'Sin Limite - CON CONSUMO CONTROLADO Y BUEN SERVICIO', '\n								0,00							'),
+(142, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="-1" data-less="-1" data-id="25">\n															', '14', '25', 'Whisky Something Special 10 aÃ±os Ã³ Sello Rojo 8 AÃ±os', '\n								<a href="#" class="consultar" data-id="25">Consultar</a>							'),
+(143, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="-1" data-less="-1" data-id="26">\n															', '15', '26', 'Cocktails Tipo Premium: Queen Elizabeth, Cuba Libre y Screw Drive', '\n								<a href="#" class="consultar" data-id="26">Consultar</a>							'),
+(144, 14, '\n																	<span class="badge">R</span>\n															', '16', '31', 'Gaseosa y Mezcladores', '\n								0,00							'),
+(145, 14, '\n																	<span class="badge">R</span>\n															', '17', '33', 'Linea de PresentaciÃ³n y Descorche de ChampaÃ±a-Sincronized Champagne Service', '\n								0,00							'),
+(146, 14, '\n																	<span class="badge">R</span>\n															', '18', '34', 'Perseguidores "Back Projection System" Para Perseguir a la QuinceaÃ±era', '\n								0,00							'),
+(147, 14, '\n																	<span class="badge">R</span>\n															', '19', '37', 'IluminaciÃ³n computarizada "Roboscan System" y "Moving Head System"', '\n								0,00							'),
+(148, 14, '\n																	<span class="badge">R</span>\n															', '20', '38', 'Espectacular Efecto de Lluvia de Burbujas', '\n								0,00							'),
+(149, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="0" data-less="10000" data-id="40">\n															', '21', '40', 'Efecto de ExplosiÃ³n de Lluvia de Serpentinas', '\n								10.000,00							'),
+(150, 14, '\n																	<span class="badge">R</span>\n															', '22', '41', 'Syncronized English Service - S.E.S.', '\n								0,00							'),
+(151, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="-1" data-less="-1" data-id="44">\n															', '23', '44', 'Plato Principal: 2 carnes y 2 Para los Adultos', '\n								<a href="#" class="consultar" data-id="44">Consultar</a>							'),
+(152, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="-1" data-less="2700" data-id="45">\n															', '24', '45', 'PonquÃ© tradicional Ã³ Cup Cake Ã³ Sweet Table - Elementos de decoraciÃ³n son opcionales', '\n								2.700,00							'),
+(153, 14, '\n																	<span class="badge">R</span>\n															', '25', '47', 'AnimaciÃ³n Especial Tipo Concierto', '\n								0,00							'),
+(154, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="0" data-less="50000" data-id="48">\n															', '26', '48', 'Sistema de Sonido RCF England', '\n								50.000,00							'),
+(155, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="0" data-less="50000" data-id="49">\n															', '27', '49', 'IluminaciÃ³n Computarizada "Roboscan System" y "Moving Head System"', '\n								50.000,00							'),
+(156, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="0" data-less="110000" data-id="50">\n															', '28', '50', 'Disjockey: ProgramaciÃ³n musical Totalmente Variada', '\n								110.000,00							'),
+(157, 14, '\n																	<span class="badge">R</span>\n															', '29', '52', 'Vestuario a 10 personas con Trajes Tipicos de CARNAVAL DE BARRANQUILLA Ã³ FIESTA NEON', '\n								0,00							'),
+(158, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="550000" data-less="510000" data-id="55">\n															', '30', '55', 'Un Album Importado con Setenta Fotos', '\n								510.000,00							'),
+(159, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="100000" data-less="35000" data-id="59">\n															', '32', '59', 'Recorrido interior del SalÃ³n con el nombre de la QuinceaÃ±era', '\n								35.000,00							'),
+(160, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="350000" data-less="300000" data-id="57">\n															', '31', '57', 'Un Video Editado en Formato DVD, con grabaciÃ³n en Ceremonia y RecepciÃ³n', '\n								300.000,00							'),
+(161, 14, '\n																	<span class="badge">R</span>\n															', '33', '60', 'Montaje de Salas tipo Lounge para jÃ³venes - mÃ¡ximo 30% de las personas', '\n								0,00							'),
+(162, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="70000" data-less="35000" data-id="62">\n															', '34', '62', 'Candelabro para cantar Happy Birthday a la QuinceaÃ±era- (Uno)', '\n								35.000,00							'),
+(163, 14, '\n																	<span class="badge">R</span>\n															', '36', '64', 'Efecto Humo Artificial', '\n								0,00							'),
+(164, 14, '\n																	<input type="checkbox" checked="" class="input-actualizar" data-more="10000" data-less="5000" data-id="63">\n															', '35', '63', 'Bandeja con 15 rosas -(Una)', '\n								5.000,00							'),
+(165, 14, '\n																	<span class="badge">R</span>\n															', '37', '67', 'Carnaval tipo FIESTA NEON con el mas espectacular show de NEON LED TECHNOLOGY', '\n								0,00							');
 
 --
 -- Índices para tablas volcadas
@@ -792,6 +835,12 @@ ALTER TABLE `reservaciones`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `reservaciones_detalle`
+--
+ALTER TABLE `reservaciones_detalle`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -809,7 +858,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1006;
 --
 -- AUTO_INCREMENT de la tabla `planes`
 --
@@ -829,7 +878,12 @@ ALTER TABLE `planes_detalle_quinces`
 -- AUTO_INCREMENT de la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT de la tabla `reservaciones_detalle`
+--
+ALTER TABLE `reservaciones_detalle`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
