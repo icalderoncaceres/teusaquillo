@@ -4,6 +4,7 @@ include_once('clases/bd.php');
 $bd=new bd();
 $reservacion=$bd->doSingleSelect('reservaciones','id=' . $id);
 $detalles=$bd->doFullSelect("reservaciones_detalle",'reservaciones_id=' . $id);
+$items=$bd->doFullSelect('items');
 ?>
 <!-- page content -->
 <div class="right_col" role="main">
@@ -122,19 +123,16 @@ $detalles=$bd->doFullSelect("reservaciones_detalle",'reservaciones_id=' . $id);
 			<div class="col-xs-12 col-sm-4 col-md-4">
 				<div class="row">
 					<div class="col-md-6">
-						<a class="btn btn-primary btn-lg disabled" id="btn-recalcular">Recalcular</a>
+						<a class="btn btn-primary btn-lg" id="btn-recalcular">Recalcular</a>
 					</div>				
 					<div class="col-md-6">
-						<a class="btn btn-success btn-lg disabled" id="btn-actualizar">Actualizar</a>
+						<a class="btn btn-success btn-lg" id="btn-actualizar">Actualizar</a>
 					</div>
 				</div>
 				<hr />
 				<div class="row">
-					<div class="col-md-6">
-						<a class="btn btn-warning btn-lg" id="btn-limpiar">Limpiar</a>
-					</div>
-					<div class="col-md-6">
-						<a class="btn btn-danger btn-lg" id="btn-volver">Volver</a>
+					<div class="col-md-6 col-md-offset-3">
+						<a class="btn btn-danger btn-lg" id="btn-volver">Imprimir</a>
 					</div>					
 				</div>				
 			</div>
@@ -147,7 +145,7 @@ $detalles=$bd->doFullSelect("reservaciones_detalle",'reservaciones_id=' . $id);
 							<select class="form-control" id="select-items">
 								<option value="-1">Seleccione</option>
 								<?php foreach($items as $item):?>
-									<option value="<?= $item['id'] ?>"><?= utf8_encode($item['description']) ?></option>
+									<option value="<?= $item['id'] ?>" data-more="<?= $item['more'] ?>"><?= utf8_encode($item['description']) ?></option>
 								<?php endforeach;?>
 							</select>
 						</div>

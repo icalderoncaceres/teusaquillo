@@ -87,8 +87,9 @@
                                 <td class="a-right a-right "><?= number_format(0,2,',','.') ?></td>
                                 <td class="a-right a-right "><?= number_format($reservacion["monto"],2,',','.') ?></td>
                                 <td class=" last">
-                                    <a href="editarReservacion.php?id=<?= $reservacion['id'] ?>" class="btn btn-warning">Ver</a>&nbsp;
-                                    <a href="#" class="btn btn-danger"><i class="fa fa-trush"></i>X</a>&nbsp;
+                                    <a href="editarReservacion.php?id=<?= $reservacion['id'] ?>" class="btn btn-info">Ver</a>&nbsp;
+                                    <a href="#" class="btn btn-warning"><i class="fa fa-trush"></i>Abonos</a>&nbsp;
+									<a href="#" class="btn btn-danger"><i class="fa fa-trush"></i>X</a>&nbsp;
 
                                 </td>
                               </tr>

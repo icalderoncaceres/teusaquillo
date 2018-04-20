@@ -22,7 +22,7 @@
 			<select class="form-control" id="select-items">
 				<option value="-1">Seleccione</option>
 				<?php foreach($items as $item):?>
-					<option value="<?= $item['id'] ?>"><?= utf8_encode($item['description']) ?></option>
+					<option value="<?= $item['id'] ?>" data-more="<?= $item['more'] ?>"><?= utf8_encode($item['description']) ?></option>
 				<?php endforeach;?>
 			</select>
 		</div>
@@ -66,7 +66,7 @@
 						<tr>
 							<th>
 								<?php if($detalle['valor_retirar']!=0):?>
-									<input type="checkbox" checked class="input-actualizar" data-more=<?= $detalle['valor_adicional'] ?> data-less=<?= $detalle['valor_retirar'] ?> data-id=<?= $detalle['id'] ?> ></input>
+									<input type="checkbox" checked class="input-actualizar" data-more=<?= $detalle['valor_adicional'] ?> data-less=<?= $detalle['valor_retirar'] ?> data-id=<?= $detalle['id'] ?> data-unidad='<?= $detalle['unidad'] ?>' ></input>
 								<?php else:?>
 									<span class="badge">R</span>
 								<?php endif;?>
@@ -86,7 +86,7 @@
 						</tr>
 					<?php
 					else:?>
-						<span class="items-not hidden" data-more='<?= $detalle['valor_adicional'] ?>' data-id='<?= $detalle['id'] ?>'>
+						<span class="items-not hidden" data-more='<?= $detalle['valor_adicional'] ?>' data-id='<?= $detalle['id'] ?>' data-unidad='<?= $detalle['unidad'] ?>'>
 							<?= utf8_encode($detalle['elemento']) ?>	
 						</span>
 					<?php

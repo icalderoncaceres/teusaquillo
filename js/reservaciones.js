@@ -14,8 +14,11 @@ $(document).ready(function(){
 			}
 		});
 		/*
-		if(enc)
+		if(enc){
+			alert("Por favor llene todos los campos");
 			return;
+		}
+			
 		*/
 		
 		//Si pasa las validaciones
@@ -102,17 +105,37 @@ $(document).ready(function(){
 			$("select.requerido").val("");
 		}
 	});
+	
+	$("#btn-recalcular").click(function(e){
+		
+		e.preventDefault();		
+	});
+	
+	$("#btn-actualizar").click(function(e){
+		e.preventDefault();
+	})
+	
 	$(document).on("click",".input-actualizar",function(e){
+		
+		let unidad=1;
+		/*
+		if($(this).data("unidad")==1){
+			unidad=prompt("¿Cuántas unidades?");
+			if(!unidad){
+				return;
+			}
+		}
+		*/		
 		if($(this).attr("data-less")==-1){
 			let valor=prompt("Ingrese el monto del descuento de este item");
 			let id=$(this).data("id");
 			if(valor){
 				$(this).attr("data-less",parseFloat(valor));
-				$(".consultar[data-id=" + id + "]").text(numberFormat(parseFloat(valor)));
+				$(".consultar[data-id=" + id + "]").text(numberFormat(parseFloat(valor * unidad)));
 			}else{
 				return;
 			}
-		}
+		}		
 		calcular();
 	});
 	
@@ -135,6 +158,14 @@ $(document).ready(function(){
 		let elem=$("#select-items option:selected");
 		let numero=$("tbody#items-adicionales>tr").length + 1;
 		let valor=elem.attr("data-more");
+		if(valor==-1){
+			let r=prompt("¿Ingrese el valor de este item?");
+			if(r){
+				valor=parseFloat(r);
+			}else{
+				return;
+			}
+		}
 		let nuevaFila='<tr data-more=' + valor + '>';
 		nuevaFila+='<td><a class="btn btn-sm btn-danger remove-item">X</a></td>';
 		nuevaFila+='<th>' + numero + '</th>';
