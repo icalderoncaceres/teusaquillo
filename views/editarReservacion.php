@@ -122,17 +122,26 @@ $items=$bd->doFullSelect('items');
 			</form>
 			<div class="col-xs-12 col-sm-4 col-md-4">
 				<div class="row">
-					<div class="col-md-6">
-						<a class="btn btn-primary btn-lg" id="btn-recalcular">Recalcular</a>
+					<div class="col-md-4">
+						<a class="btn btn-primary btn-md" id="btn-recalcular">Recalcular</a>
 					</div>				
-					<div class="col-md-6">
-						<a class="btn btn-success btn-lg" id="btn-actualizar">Actualizar</a>
+					<div class="col-md-4">
+						<a class="btn btn-success btn-md" id="btn-actualizar">Actualizar</a>
 					</div>
+					<div class="col-md-4">
+						<a class="btn btn-warning btn-md" id="btn-imprimir">Imprimir</a>
+					</div>					
 				</div>
 				<hr />
 				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
-						<a class="btn btn-danger btn-lg" id="btn-volver">Imprimir</a>
+					<div class="col-md-4">
+						<a class="btn btn-primary btn-md" id="btn-reservar" href="planpagos.php?id=<?= $reservacion['id'] ?>">Reservar</a>
+					</div>
+					<div class="col-md-4">
+						<a class="btn btn-success btn-md" id="btn-separar">Separar</a>
+					</div>
+					<div class="col-md-4">
+						<a class="btn btn-danger btn-md" id="btn-separar">Volver</a>
 					</div>					
 				</div>				
 			</div>

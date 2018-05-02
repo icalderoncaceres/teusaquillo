@@ -111,20 +111,26 @@
 			</form>
 			<div class="col-xs-12 col-sm-4 col-md-4">
 				<div class="row">
-					<div class="col-md-6">
-						<a class="btn btn-primary btn-lg" id="btn-generar">Generar</a>
+					<div class="col-md-4">
+						<a class="btn btn-primary btn-md" id="btn-generar">Generar</a>
 					</div>
-					<div class="col-md-6">
-						<a class="btn btn-success btn-lg disabled" id="btn-guardar">Guardar</a>
+					<div class="col-md-4">
+						<a class="btn btn-success btn-md disabled" id="btn-guardar">Guardar</a>
+					</div>
+					<div class="col-md-4">
+						<a class="btn btn-info btn-md disabled" id="btn-reservar">Reservar</a>
 					</div>
 				</div>
 				<hr />
 				<div class="row">
-					<div class="col-md-6">
-						<a class="btn btn-warning btn-lg" id="btn-limpiar">Limpiar</a>
+					<div class="col-md-4">
+						<a class="btn btn-primary btn-md disabled" id="btn-separar">Separar</a>
+					</div>				
+					<div class="col-md-4">
+						<a class="btn btn-warning btn-md" id="btn-limpiar">Limpiar</a>
 					</div>
-					<div class="col-md-6">
-						<a class="btn btn-danger btn-lg" id="btn-volver">Volver</a>
+					<div class="col-md-4">
+						<a class="btn btn-danger btn-md" id="btn-volver">Volver</a>
 					</div>					
 				</div>				
 			</div>
